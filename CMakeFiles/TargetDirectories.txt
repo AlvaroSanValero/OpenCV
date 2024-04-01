@@ -1,0 +1,3 @@
+/media/gorka/data/usal/Robótica/OpenCV/CMakeFiles/output.dir
+/media/gorka/data/usal/Robótica/OpenCV/CMakeFiles/edit_cache.dir
+/media/gorka/data/usal/Robótica/OpenCV/CMakeFiles/rebuild_cache.dir

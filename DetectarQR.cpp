@@ -62,7 +62,7 @@ string calcularMovimiento(const vector<Point>& cuadrado, int imagenAncho) {
 
     // Determinar el movimiento necesario
     string movimiento;
-    if (area < 200) {
+    if (area < 30000.0) {
         movimiento = "Avanzar hacia adelante";
     } else if (cX < imagenAncho / 2 - 20) {
         movimiento = "Avanzar hacia la izquierda";
@@ -75,11 +75,19 @@ string calcularMovimiento(const vector<Point>& cuadrado, int imagenAncho) {
     return movimiento;
 }
 
-int main() {
+int main(int argc, char** argv) {
+    if (argc > 2) {
+       cerr << "Usage: " << argv[0] << " [image_path]" << endl;
+       return 1;
+    }
     // Leer la imagen desde el disco
-    Mat imagen = imread("imagen_oficina.jpg");
+    string imageName = "qr.jpg";
+    if (argc == 2) {
+      imageName = argv[1];
+    }
+    Mat imagen = imread(imageName);
     if (imagen.empty()) {
-        cerr << "No se pudo cargar la imagen." << endl;
+        cerr << "No se pudo cargar la imagen. \"" << imageName << "\"!" << endl;
         return 1;
     }
 
@@ -97,6 +105,7 @@ int main() {
         // Mostrar resultados
         cout << "Orientación del cuadrado: " << orientacion << endl;
         cout << "Movimiento necesario: " << movimiento << endl;
+        cout << "Area del cuadrado: " << contourArea(cuadrado) << endl;
     } else {
         cout << "No se detectó ningún cuadrado rojo en la imagen." << endl;
     }
